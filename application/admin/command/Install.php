@@ -244,7 +244,7 @@ class Install extends Command
             throw new Exception(__('The current permissions are insufficient to write the file %s', 'application/config.php'));
         }
 
-        $avatar = request()->domain() . '/assets/img/avatar.png';
+        $avatar = '/assets/img/avatar.png';
         // 变更默认管理员密码
         $adminPassword = $adminPassword ? $adminPassword : Random::alnum(8);
         $adminEmail = $adminEmail ? $adminEmail : "admin@admin.com";
