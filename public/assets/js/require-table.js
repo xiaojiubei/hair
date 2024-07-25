@@ -929,15 +929,15 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                                     buttons.push(tempButton[item.name]);
                                 }
                                 existBtn.push(item.name);
-                    }
+                            }
                         } else {
                             buttons.push(item);
-                    }
+                        }
                     });
                     defaultBtn.forEach(function (value, index) {
                         if (existBtn.indexOf(value) === -1) {
                             buttons.push(tempButton[value]);
-                    }
+                        }
                     });
                     return Table.api.buttonlink(this, buttons, value, row, index, 'operate');
                 }

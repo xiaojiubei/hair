@@ -295,6 +295,9 @@ define(['jquery', 'bootstrap', 'upload', 'validator', 'validator-lang'], functio
                                     var url = Config.upload.fullmode ? Fast.api.cdnurl(data.url) : data.url;
                                     $("#" + input_id).val(url).trigger("change").trigger("validate");
                                 }
+
+                                // 触发选择文件自定义事件
+                                button.trigger("fa.event.selectedfile", data);
                             }
                         });
                         return false;
