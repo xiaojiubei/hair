@@ -214,7 +214,6 @@ class Install extends Command
         $adminFile = ROOT_PATH . 'public' . DS . 'admin.php';
 
         // 数据库配置文件
-        // 数据库配置文件
         $envSampleFile = ROOT_PATH . '.env.sample';
         $envFile = ROOT_PATH . '.env';
         if (!file_exists($envFile)) {
