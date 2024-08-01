@@ -265,7 +265,7 @@ define(['jquery', 'bootstrap', 'upload', 'validator', 'validator-lang'], functio
                         var url = $(this).data("url") ? $(this).data("url") : (typeof Backend !== 'undefined' ? "general/attachment/select" : "user/attachment");
                         parent.Fast.api.open(url + "?element_id=" + $(this).attr("id") + "&multiple=" + multiple + "&mimetype=" + mimetype + "&admin_id=" + admin_id + "&user_id=" + user_id, __('Choose'), {
                             callback: function (data) {
-                                var button = $("#" + $(that).attr("id"));
+                                var button = $(that);
                                 var maxcount = $(button).data("maxcount");
                                 var input_id = $(button).data("input-id") ? $(button).data("input-id") : "";
                                 maxcount = typeof maxcount !== "undefined" ? maxcount : 0;
@@ -295,6 +295,9 @@ define(['jquery', 'bootstrap', 'upload', 'validator', 'validator-lang'], functio
                                     var url = Config.upload.fullmode ? Fast.api.cdnurl(data.url) : data.url;
                                     $("#" + input_id).val(url).trigger("change").trigger("validate");
                                 }
+
+                                // 触发选择文件自定义事件
+                                button.trigger("fa.event.selectedfile", data);
                             }
                         });
                         return false;
@@ -510,7 +513,11 @@ define(['jquery', 'bootstrap', 'upload', 'validator', 'validator-lang'], functio
             autocomplete: function (form) {
                 if ($("[data-role='autocomplete']", form).length > 0) {
                     require(['autocomplete'], function () {
-                        $("[data-role='autocomplete']").autocomplete();
+                        $("[data-role='autocomplete']").autocomplete({
+                            onSelect: function () {
+                                $(this).trigger('change').trigger('validate');
+                            }
+                        });
                     });
                 }
             },

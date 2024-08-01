@@ -241,6 +241,27 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'cookie']
                             Layer.close(index);
                         });
                         return false;
+                    } else if (ret && ret.code === -3) {
+                        //插件目录发现影响全局的文件
+                        Layer.open({
+                            content: Template("conflicttpl", ret.data),
+                            shade: 0.8,
+                            area: area,
+                            title: __('Warning'),
+                            btn: [__('Continue install'), __('Cancel')],
+                            end: function () {
+
+                            },
+                            yes: function (index) {
+                                up.removeFile(file);
+                                file.force = true;
+                                up.uploadFile(file);
+                                Layer.close(index);
+                            }
+                        });
+
+                    } else {
+                        Layer.alert(ret.msg, {title: __('Warning'), icon: 0});
                     }
                 });
 

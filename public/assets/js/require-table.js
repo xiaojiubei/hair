@@ -469,8 +469,10 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                 toolbar.on('click', Table.config.delbtn, function () {
                     var that = this;
                     var ids = Table.api.selectedids(table);
+                    var confirm = $(this).data("confirm");
+                    var message = typeof confirm === 'function' ? confirm.call(this, ids) : (typeof confirm !== 'undefined' ? __(confirm, ids.length) : '');
                     Layer.confirm(
-                        __('Are you sure you want to delete the %s selected item?', ids.length),
+                        message || __('Are you sure you want to delete the %s selected item?', ids.length),
                         {icon: 3, title: __('Warning'), offset: 0, shadeClose: true, btn: [__('OK'), __('Cancel')]},
                         function (index) {
                             Table.api.multi("del", ids, table, that);
@@ -692,7 +694,7 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                             top = left = undefined;
                         }
                         Layer.confirm(
-                            __('Are you sure you want to delete this item?'),
+                            $(that).data("confirm") || __('Are you sure you want to delete this item?'),
                             {icon: 3, title: __('Warning'), offset: [top, left], shadeClose: true, btn: [__('OK'), __('Cancel')]},
                             function (index) {
                                 var table = $(that).closest('table');
@@ -753,7 +755,7 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                     return html.join(' ');
                 },
                 file: function (value, row, index) {
-                    Table.api.formatter.files.call(this, value, row, index);
+                    return Table.api.formatter.files.call(this, value, row, index);
                 },
                 files: function (value, row, index) {
                     value = value == null || value.length === 0 ? '' : value.toString();
@@ -915,23 +917,28 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                     var table = this.table;
                     // 操作配置
                     var options = table ? table.bootstrapTable('getOptions') : {};
-                    // 默认按钮组
-                    var buttons = $.extend([], this.buttons || []);
-                    // 所有按钮名称
-                    var names = [];
-                    buttons.forEach(function (item) {
-                        names.push(item.name);
+                    var buttons = [];
+                    var existBtn = [];
+                    var defaultBtn = ['dragsort', 'edit', 'del'];
+                    var tempButton = $.extend({}, Table.button, {});
+                    (this.buttons || []).forEach(function (item, index) {
+                        if (defaultBtn.indexOf(item.name) > -1) {
+                            $.extend(tempButton[item.name], item, Table.button[item.name], item.name === 'edit' ? {url: options.extend.edit_url} : {});
+                            if (item.keep) {
+                                if (options.extend[item.name + "_url"] !== '') {
+                                    buttons.push(tempButton[item.name]);
+                                }
+                                existBtn.push(item.name);
+                            }
+                        } else {
+                            buttons.push(item);
+                        }
                     });
-                    if (options.extend.dragsort_url !== '' && names.indexOf('dragsort') === -1) {
-                        buttons.push(Table.button.dragsort);
-                    }
-                    if (options.extend.edit_url !== '' && names.indexOf('edit') === -1) {
-                        Table.button.edit.url = options.extend.edit_url;
-                        buttons.push(Table.button.edit);
-                    }
-                    if (options.extend.del_url !== '' && names.indexOf('del') === -1) {
-                        buttons.push(Table.button.del);
-                    }
+                    defaultBtn.forEach(function (value, index) {
+                        if (existBtn.indexOf(value) === -1) {
+                            buttons.push(tempButton[value]);
+                        }
+                    });
                     return Table.api.buttonlink(this, buttons, value, row, index, 'operate');
                 }
                 ,
