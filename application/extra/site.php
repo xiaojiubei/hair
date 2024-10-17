@@ -4,7 +4,7 @@ return array (
   'name' => '发型公社',
   'beian' => '',
   'cdnurl' => '',
-  'version' => '1.0.3',
+  'version' => '1.0.5',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
   'languages' => 
