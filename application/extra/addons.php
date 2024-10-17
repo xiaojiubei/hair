@@ -10,14 +10,12 @@ return [
             'betterform',
             'clicaptcha',
             'darktheme',
-            'filewatcher',
             'third',
         ],
         'config_init' => [
             'betterform',
             'cropper',
             'darktheme',
-            'filewatcher',
             'markdown',
             'simditor',
             'summernote',
@@ -26,7 +24,6 @@ return [
         'app_init' => [
             'captcha',
             'crontab',
-            'filewatcher',
             'qrcode',
             'xunsearch',
         ],
