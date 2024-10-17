@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `fa_admin` (
 -- 正在导出表  hair.fa_admin 的数据：~0 rows (大约)
 DELETE FROM `fa_admin`;
 INSERT INTO `fa_admin` (`id`, `username`, `nickname`, `password`, `salt`, `avatar`, `email`, `mobile`, `loginfailure`, `logintime`, `loginip`, `createtime`, `updatetime`, `token`, `status`) VALUES
-	(1, 'admin', 'Admin', 'bf66f8b9caca7755b976f6f180f22d4a', '399083', 'http://hair.init/assets/img/avatar.png', 'admin@admin.com', '', 0, 1729158341, '127.0.0.1', 1491635035, 1729158341, '36a53a2d-6d06-4720-b3f5-0b5838a0c839', 'normal');
+	(1, 'admin', 'Admin', 'bf66f8b9caca7755b976f6f180f22d4a', '399083', 'http://hair.init/assets/img/avatar.png', 'admin@admin.com', '', 0, 1729159118, '127.0.0.1', 1491635035, 1729159118, 'bdc5370e-fee3-4097-a35d-22a8c6511039', 'normal');
 
 -- 导出  表 hair.fa_admin_log 结构
 CREATE TABLE IF NOT EXISTS `fa_admin_log` (
@@ -53,9 +53,9 @@ CREATE TABLE IF NOT EXISTS `fa_admin_log` (
   `createtime` bigint(16) DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`),
   KEY `name` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COMMENT='管理员日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COMMENT='管理员日志表';
 
--- 正在导出表  hair.fa_admin_log 的数据：~65 rows (大约)
+-- 正在导出表  hair.fa_admin_log 的数据：~83 rows (大约)
 DELETE FROM `fa_admin_log`;
 INSERT INTO `fa_admin_log` (`id`, `admin_id`, `username`, `url`, `title`, `content`, `ip`, `useragent`, `createtime`) VALUES
 	(1, 0, 'Unknown', '/gzjrwVDeSZ.php/index/login', '', '{"__token__":"***","username":"admin","password":"***","captcha":"ccfa"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158337),
@@ -122,7 +122,28 @@ INSERT INTO `fa_admin_log` (`id`, `admin_id`, `username`, `url`, `title`, `conte
 	(62, 1, 'admin', '/gzjrwVDeSZ.php/addon/install', '插件管理', '{"name":"version","force":"0","uid":"20050","token":"***","version":"1.0.4","faversion":"1.6.0.20240401"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158650),
 	(63, 1, 'admin', '/gzjrwVDeSZ.php/addon/state', '插件管理 / 禁用启用', '{"name":"version","action":"enable","force":"0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158650),
 	(64, 1, 'admin', '/gzjrwVDeSZ.php/addon/install', '插件管理', '{"name":"summernote","force":"0","uid":"20050","token":"***","version":"1.1.2","faversion":"1.6.0.20240401"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158656),
-	(65, 1, 'admin', '/gzjrwVDeSZ.php/addon/state', '插件管理 / 禁用启用', '{"name":"summernote","action":"enable","force":"0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158657);
+	(65, 1, 'admin', '/gzjrwVDeSZ.php/addon/state', '插件管理 / 禁用启用', '{"name":"summernote","action":"enable","force":"0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158657),
+	(66, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"2","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158880),
+	(67, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"5","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158901),
+	(68, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"4","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158902),
+	(69, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"66","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158906),
+	(70, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"85","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158908),
+	(71, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"93","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158909),
+	(72, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"135","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158910),
+	(73, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"163","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158911),
+	(74, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"178","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158912),
+	(75, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"182","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158913),
+	(76, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"211","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158914),
+	(77, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"228","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729158915),
+	(78, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"4","params":"ismenu=1"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729159079),
+	(79, 0, 'Unknown', '/gzjrwVDeSZ.php/index/logout', '', '{"__token__":"***"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729159099),
+	(80, 1, 'admin', '/gzjrwVDeSZ.php/index/login', '登录', '{"__token__":"***","username":"admin","password":"***","captcha":"53,51.5-60,136.5-262,179.5-276,121.5;350;233"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729159118),
+	(81, 1, 'admin', '/gzjrwVDeSZ.php/addon/state', '插件管理 / 禁用启用', '{"name":"filewatcher","action":"disable","force":"0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729159155),
+	(82, 1, 'admin', '/gzjrwVDeSZ.php/hair/user/add?dialog=1', 'hair / 客户管理 / 添加', '{"dialog":"1","row":{"name":"列飞","account":"liefei","balance":"20"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729160021),
+	(83, 1, 'admin', '/gzjrwVDeSZ.php/hair/shoper/add?dialog=1', 'hair / 商家管理 / 添加', '{"dialog":"1","row":{"name":"蓝马","account":"lanma","password":"***","safe_code":"157359"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729160056),
+	(84, 1, 'admin', '/gzjrwVDeSZ.php/hair/log/add?dialog=1', 'hair / 记录管理 / 添加', '{"dialog":"1","row":{"shoper_id":"2","user_id":"2","random_code":"23456"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729160576),
+	(85, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"4","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729160809),
+	(86, 1, 'admin', '/gzjrwVDeSZ.php/auth/rule/multi', '权限管理 / 菜单规则', '{"action":"","ids":"234","params":"ismenu=0"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 1729160812);
 
 -- 导出  表 hair.fa_area 结构
 CREATE TABLE IF NOT EXISTS `fa_area` (
@@ -3981,16 +4002,16 @@ CREATE TABLE IF NOT EXISTS `fa_auth_rule` (
   UNIQUE KEY `name` (`name`) USING BTREE,
   KEY `pid` (`pid`),
   KEY `weigh` (`weigh`)
-) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8mb4 COMMENT='节点表';
+) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=utf8mb4 COMMENT='节点表';
 
--- 正在导出表  hair.fa_auth_rule 的数据：~240 rows (大约)
+-- 正在导出表  hair.fa_auth_rule 的数据：~268 rows (大约)
 DELETE FROM `fa_auth_rule`;
 INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`, `condition`, `remark`, `ismenu`, `menutype`, `extend`, `py`, `pinyin`, `createtime`, `updatetime`, `weigh`, `status`) VALUES
 	(1, 'file', 0, 'dashboard', 'Dashboard', 'fa fa-dashboard', '', '', 'Dashboard tips', 1, NULL, '', 'kzt', 'kongzhitai', 1491635035, 1491635035, 143, 'normal'),
-	(2, 'file', 0, 'general', 'General', 'fa fa-cogs', '', '', '', 1, NULL, '', 'cggl', 'changguiguanli', 1491635035, 1491635035, 137, 'normal'),
+	(2, 'file', 0, 'general', 'General', 'fa fa-cogs', '', '', '', 0, NULL, '', 'cggl', 'changguiguanli', 1491635035, 1729158880, 137, 'normal'),
 	(3, 'file', 0, 'category', 'Category', 'fa fa-leaf', '', '', 'Category tips', 0, NULL, '', 'flgl', 'fenleiguanli', 1491635035, 1491635035, 119, 'normal'),
-	(4, 'file', 0, 'addon', 'Addon', 'fa fa-rocket', '', '', 'Addon tips', 1, NULL, '', 'cjgl', 'chajianguanli', 1491635035, 1491635035, 0, 'normal'),
-	(5, 'file', 0, 'auth', 'Auth', 'fa fa-group', '', '', '', 1, NULL, '', 'qxgl', 'quanxianguanli', 1491635035, 1491635035, 99, 'normal'),
+	(4, 'file', 0, 'addon', 'Addon', 'fa fa-rocket', '', '', 'Addon tips', 0, NULL, '', 'cjgl', 'chajianguanli', 1491635035, 1729160809, 0, 'normal'),
+	(5, 'file', 0, 'auth', 'Auth', 'fa fa-group', '', '', '', 0, NULL, '', 'qxgl', 'quanxianguanli', 1491635035, 1729158901, 99, 'normal'),
 	(6, 'file', 2, 'general/config', 'Config', 'fa fa-cog', '', '', 'Config tips', 1, NULL, '', 'xtpz', 'xitongpeizhi', 1491635035, 1491635035, 60, 'normal'),
 	(7, 'file', 2, 'general/attachment', 'Attachment', 'fa fa-file-image-o', '', '', 'Attachment tips', 1, NULL, '', 'fjgl', 'fujianguanli', 1491635035, 1491635035, 53, 'normal'),
 	(8, 'file', 2, 'general/profile', 'Profile', 'fa fa-user', '', '', '', 1, NULL, '', 'grzl', 'gerenziliao', 1491635035, 1491635035, 34, 'normal'),
@@ -4049,7 +4070,7 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(63, 'file', 4, 'addon/config', 'Setting', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
 	(64, 'file', 4, 'addon/refresh', 'Refresh', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
 	(65, 'file', 4, 'addon/multi', 'Multi', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
-	(66, 'file', 0, 'user', 'User', 'fa fa-user-circle', '', '', '', 1, NULL, '', 'hygl', 'huiyuanguanli', 1491635035, 1491635035, 0, 'normal'),
+	(66, 'file', 0, 'user', 'User', 'fa fa-user-circle', '', '', '', 0, NULL, '', 'hygl', 'huiyuanguanli', 1491635035, 1729158906, 0, 'normal'),
 	(67, 'file', 66, 'user/user', 'User', 'fa fa-user', '', '', '', 1, NULL, '', 'hygl', 'huiyuanguanli', 1491635035, 1491635035, 0, 'normal'),
 	(68, 'file', 67, 'user/user/index', 'View', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
 	(69, 'file', 67, 'user/user/edit', 'Edit', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
@@ -4068,7 +4089,7 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(82, 'file', 79, 'user/rule/add', 'Add', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
 	(83, 'file', 79, 'user/rule/edit', 'Edit', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
 	(84, 'file', 79, 'user/rule/multi', 'Multi', 'fa fa-circle-o', '', '', '', 0, NULL, '', '', '', 1491635035, 1491635035, 0, 'normal'),
-	(85, 'file', 0, 'command', '在线命令管理', 'fa fa-terminal', '', '', '', 1, NULL, '', 'zxmlgl', 'zaixianminglingguanli', 1729158416, 1729158416, 0, 'normal'),
+	(85, 'file', 0, 'command', '在线命令管理', 'fa fa-terminal', '', '', '', 0, NULL, '', 'zxmlgl', 'zaixianminglingguanli', 1729158416, 1729158908, 0, 'normal'),
 	(86, 'file', 85, 'command/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158416, 1729158416, 0, 'normal'),
 	(87, 'file', 85, 'command/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729158416, 1729158416, 0, 'normal'),
 	(88, 'file', 85, 'command/detail', '详情', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'xq', 'xiangqing', 1729158416, 1729158416, 0, 'normal'),
@@ -4076,7 +4097,7 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(90, 'file', 85, 'command/execute', '再次执行命令', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zczxml', 'zaicizhixingmingling', 1729158416, 1729158416, 0, 'normal'),
 	(91, 'file', 85, 'command/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158416, 1729158416, 0, 'normal'),
 	(92, 'file', 85, 'command/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158416, 1729158416, 0, 'normal'),
-	(93, 'file', 0, 'example', '开发示例管理', 'fa fa-magic', '', '', '', 1, NULL, '', 'kfslgl', 'kaifashiliguanli', 1729158420, 1729158420, 0, 'normal'),
+	(93, 'file', 0, 'example', '开发示例管理', 'fa fa-magic', '', '', '', 0, NULL, '', 'kfslgl', 'kaifashiliguanli', 1729158420, 1729158909, 0, 'normal'),
 	(94, 'file', 93, 'example/bootstraptable', '表格完整示例', 'fa fa-table', '', '', '', 1, NULL, '', 'bgwzsl', 'biaogewanzhengshili', 1729158420, 1729158420, 0, 'normal'),
 	(95, 'file', 94, 'example/bootstraptable/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158420, 1729158420, 0, 'normal'),
 	(96, 'file', 94, 'example/bootstraptable/detail', '详情', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'xq', 'xiangqing', 1729158420, 1729158420, 0, 'normal'),
@@ -4118,7 +4139,7 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(132, 'file', 128, 'example/tabletemplate/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158420, 1729158420, 0, 'normal'),
 	(133, 'file', 93, 'example/echarts', '统计图表示例', 'fa fa-bar-chart', '', '', '', 1, NULL, '', 'tjtbsl', 'tongjitubiaoshili', 1729158420, 1729158420, 0, 'normal'),
 	(134, 'file', 133, 'example/echarts/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158420, 1729158420, 0, 'normal'),
-	(135, 'file', 0, 'wechat', '微信管理', 'fa fa-wechat', '', '', '', 1, NULL, '', 'wxgl', 'weixinguanli', 1729158486, 1729158486, 0, 'normal'),
+	(135, 'file', 0, 'wechat', '微信管理', 'fa fa-wechat', '', '', '', 0, NULL, '', 'wxgl', 'weixinguanli', 1729158486, 1729158910, 0, 'normal'),
 	(136, 'file', 135, 'wechat/autoreply', '自动回复管理', 'fa fa-reply-all', '', '', '', 1, NULL, '', 'zdhfgl', 'zidonghuifuguanli', 1729158486, 1729158486, 0, 'normal'),
 	(137, 'file', 136, 'wechat/autoreply/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158486, 1729158486, 0, 'normal'),
 	(138, 'file', 136, 'wechat/autoreply/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729158486, 1729158486, 0, 'normal'),
@@ -4146,7 +4167,7 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(160, 'file', 156, 'wechat/response/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158486, 1729158486, 0, 'normal'),
 	(161, 'file', 156, 'wechat/response/select', '选择', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'xz', 'xuanze', 1729158486, 1729158486, 0, 'normal'),
 	(162, 'file', 156, 'wechat/response/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158486, 1729158486, 0, 'normal'),
-	(163, 'file', 0, 'third', '第三方登录管理', 'fa fa-users', '', '', '', 1, NULL, '', 'dsfdlgl', 'disanfangdengluguanli', 1729158489, 1729158489, 0, 'normal'),
+	(163, 'file', 0, 'third', '第三方登录管理', 'fa fa-users', '', '', '', 0, NULL, '', 'dsfdlgl', 'disanfangdengluguanli', 1729158489, 1729158911, 0, 'normal'),
 	(164, 'file', 163, 'third/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158489, 1729158489, 0, 'normal'),
 	(165, 'file', 163, 'third/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158489, 1729158489, 0, 'normal'),
 	(166, 'file', 66, 'user/moneylog', '会员余额日志', 'fa fa-list', '', '', '', 1, NULL, '', 'hyyerz', 'huiyuanyuerizhi', 1729158507, 1729158507, 0, 'normal'),
@@ -4161,11 +4182,11 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(175, 'file', 172, 'user/scorelog/edit', '修改', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'xg', 'xiugai', 1729158508, 1729158508, 0, 'normal'),
 	(176, 'file', 172, 'user/scorelog/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158508, 1729158508, 0, 'normal'),
 	(177, 'file', 172, 'user/scorelog/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158508, 1729158508, 0, 'normal'),
-	(178, 'file', 0, 'baidupush', '百度推送管理', 'fa fa-paper-plane', '', '', '', 1, NULL, '', 'bdtsgl', 'baidutuisongguanli', 1729158570, 1729158570, 0, 'normal'),
+	(178, 'file', 0, 'baidupush', '百度推送管理', 'fa fa-paper-plane', '', '', '', 0, NULL, '', 'bdtsgl', 'baidutuisongguanli', 1729158570, 1729158912, 0, 'normal'),
 	(179, 'file', 178, 'baidupush/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158570, 1729158570, 0, 'normal'),
 	(180, 'file', 178, 'baidupush/normal', '普通收录提交', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'ptsltj', 'putongshoulutijiao', 1729158570, 1729158570, 0, 'normal'),
 	(181, 'file', 178, 'baidupush/daily', '快速收录提交', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'kssltj', 'kuaisushoulutijiao', 1729158570, 1729158570, 0, 'normal'),
-	(182, 'file', 0, 'xunsearch', 'Xunsearch全文搜索管理', 'fa fa-search', '', '', '', 1, NULL, '', 'Xqwssgl', 'Xunsearchquanwensousuoguanli', 1729158574, 1729158574, 0, 'normal'),
+	(182, 'file', 0, 'xunsearch', 'Xunsearch全文搜索管理', 'fa fa-search', '', '', '', 0, NULL, '', 'Xqwssgl', 'Xunsearchquanwensousuoguanli', 1729158574, 1729158913, 0, 'normal'),
 	(183, 'file', 182, 'xunsearch/project', '项目管理', 'fa fa-cog', '', '', '', 1, NULL, '', 'xmgl', 'xiangmuguanli', 1729158574, 1729158574, 0, 'normal'),
 	(184, 'file', 183, 'xunsearch/project/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158574, 1729158574, 0, 'normal'),
 	(185, 'file', 183, 'xunsearch/project/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729158574, 1729158574, 0, 'normal'),
@@ -4194,7 +4215,7 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(208, 'file', 205, 'user/withdraw/edit', '修改', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'xg', 'xiugai', 1729158586, 1729158586, 0, 'normal'),
 	(209, 'file', 205, 'user/withdraw/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158586, 1729158586, 0, 'normal'),
 	(210, 'file', 205, 'user/withdraw/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158586, 1729158586, 0, 'normal'),
-	(211, 'file', 0, 'signin', '签到管理', 'fa fa-map-marker', '', '', '', 1, NULL, '', 'qdgl', 'qiandaoguanli', 1729158604, 1729158604, 0, 'normal'),
+	(211, 'file', 0, 'signin', '签到管理', 'fa fa-map-marker', '', '', '', 0, NULL, '', 'qdgl', 'qiandaoguanli', 1729158604, 1729158914, 0, 'normal'),
 	(212, 'file', 211, 'signin/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158604, 1729158604, 0, 'normal'),
 	(213, 'file', 211, 'signin/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729158604, 1729158604, 0, 'normal'),
 	(214, 'file', 211, 'signin/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'bj', 'bianji', 1729158604, 1729158604, 0, 'normal'),
@@ -4211,13 +4232,13 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(225, 'file', 223, 'general/database/query', '查询', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'cx', 'chaxun', 1729158646, 1729158646, 0, 'normal'),
 	(226, 'file', 223, 'general/database/backup', '备份', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'bf', 'beifen', 1729158646, 1729158646, 0, 'normal'),
 	(227, 'file', 223, 'general/database/restore', '恢复', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hf', 'huifu', 1729158646, 1729158646, 0, 'normal'),
-	(228, 'file', 0, 'version', '版本管理', 'fa fa-file-text-o', '', '', '常用于管理移动端应用版本更新', 1, NULL, '', 'bbgl', 'banbenguanli', 1729158650, 1729158650, 0, 'normal'),
+	(228, 'file', 0, 'version', '版本管理', 'fa fa-file-text-o', '', '', '常用于管理移动端应用版本更新', 0, NULL, '', 'bbgl', 'banbenguanli', 1729158650, 1729158915, 0, 'normal'),
 	(229, 'file', 228, 'version/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158650, 1729158650, 0, 'normal'),
 	(230, 'file', 228, 'version/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729158650, 1729158650, 0, 'normal'),
 	(231, 'file', 228, 'version/edit', '修改', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'xg', 'xiugai', 1729158650, 1729158650, 0, 'normal'),
 	(232, 'file', 228, 'version/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158650, 1729158650, 0, 'normal'),
 	(233, 'file', 228, 'version/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158650, 1729158650, 0, 'normal'),
-	(234, 'file', 0, 'test', '测试管理', 'fa fa-circle-o\r', '', '', '', 1, NULL, '', 'csgl', 'ceshiguanli', 1729158741, 1729158741, 0, 'normal'),
+	(234, 'file', 0, 'test', '测试管理', 'fa fa-circle-o\r', '', '', '', 0, NULL, '', 'csgl', 'ceshiguanli', 1729158741, 1729160812, 0, 'normal'),
 	(235, 'file', 234, 'test/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729158741, 1729158741, 0, 'normal'),
 	(236, 'file', 234, 'test/recyclebin', '回收站', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hsz', 'huishouzhan', 1729158741, 1729158741, 0, 'normal'),
 	(237, 'file', 234, 'test/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729158741, 1729158741, 0, 'normal'),
@@ -4225,7 +4246,35 @@ INSERT INTO `fa_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `url`,
 	(239, 'file', 234, 'test/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729158741, 1729158741, 0, 'normal'),
 	(240, 'file', 234, 'test/destroy', '真实删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zssc', 'zhenshishanchu', 1729158741, 1729158741, 0, 'normal'),
 	(241, 'file', 234, 'test/restore', '还原', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hy', 'huanyuan', 1729158741, 1729158741, 0, 'normal'),
-	(242, 'file', 234, 'test/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158741, 1729158741, 0, 'normal');
+	(242, 'file', 234, 'test/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729158741, 1729158741, 0, 'normal'),
+	(243, 'file', 0, 'hair', 'hair', 'fa fa-list', '', '', '', 1, NULL, '', 'h', 'hair', 1729159939, 1729159939, 0, 'normal'),
+	(244, 'file', 243, 'hair/log', '记录管理', 'fa fa-circle-o\r', '', '', '', 1, NULL, '', 'jlgl', 'jiluguanli', 1729159939, 1729159939, 0, 'normal'),
+	(245, 'file', 244, 'hair/log/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729159939, 1729159939, 0, 'normal'),
+	(246, 'file', 244, 'hair/log/recyclebin', '回收站', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hsz', 'huishouzhan', 1729159939, 1729159939, 0, 'normal'),
+	(247, 'file', 244, 'hair/log/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729159939, 1729159939, 0, 'normal'),
+	(248, 'file', 244, 'hair/log/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'bj', 'bianji', 1729159939, 1729159939, 0, 'normal'),
+	(249, 'file', 244, 'hair/log/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729159939, 1729159939, 0, 'normal'),
+	(250, 'file', 244, 'hair/log/destroy', '真实删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zssc', 'zhenshishanchu', 1729159939, 1729159939, 0, 'normal'),
+	(251, 'file', 244, 'hair/log/restore', '还原', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hy', 'huanyuan', 1729159939, 1729159939, 0, 'normal'),
+	(252, 'file', 244, 'hair/log/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729159939, 1729159939, 0, 'normal'),
+	(253, 'file', 243, 'hair/user', '客户管理', 'fa fa-circle-o\r', '', '', '', 1, NULL, '', 'khgl', 'kehuguanli', 1729159944, 1729159944, 0, 'normal'),
+	(254, 'file', 253, 'hair/user/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729159944, 1729159944, 0, 'normal'),
+	(255, 'file', 253, 'hair/user/recyclebin', '回收站', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hsz', 'huishouzhan', 1729159944, 1729159944, 0, 'normal'),
+	(256, 'file', 253, 'hair/user/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729159944, 1729159944, 0, 'normal'),
+	(257, 'file', 253, 'hair/user/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'bj', 'bianji', 1729159944, 1729159944, 0, 'normal'),
+	(258, 'file', 253, 'hair/user/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729159944, 1729159944, 0, 'normal'),
+	(259, 'file', 253, 'hair/user/destroy', '真实删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zssc', 'zhenshishanchu', 1729159944, 1729159944, 0, 'normal'),
+	(260, 'file', 253, 'hair/user/restore', '还原', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hy', 'huanyuan', 1729159944, 1729159944, 0, 'normal'),
+	(261, 'file', 253, 'hair/user/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729159944, 1729159944, 0, 'normal'),
+	(262, 'file', 243, 'hair/shoper', '商家管理', 'fa fa-circle-o\r', '', '', '', 1, NULL, '', 'sjgl', 'shangjiaguanli', 1729159949, 1729159949, 0, 'normal'),
+	(263, 'file', 262, 'hair/shoper/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1729159949, 1729159949, 0, 'normal'),
+	(264, 'file', 262, 'hair/shoper/recyclebin', '回收站', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hsz', 'huishouzhan', 1729159949, 1729159949, 0, 'normal'),
+	(265, 'file', 262, 'hair/shoper/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1729159949, 1729159949, 0, 'normal'),
+	(266, 'file', 262, 'hair/shoper/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'bj', 'bianji', 1729159949, 1729159949, 0, 'normal'),
+	(267, 'file', 262, 'hair/shoper/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1729159949, 1729159949, 0, 'normal'),
+	(268, 'file', 262, 'hair/shoper/destroy', '真实删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zssc', 'zhenshishanchu', 1729159949, 1729159949, 0, 'normal'),
+	(269, 'file', 262, 'hair/shoper/restore', '还原', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hy', 'huanyuan', 1729159949, 1729159949, 0, 'normal'),
+	(270, 'file', 262, 'hair/shoper/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1729159949, 1729159949, 0, 'normal');
 
 -- 导出  表 hair.fa_category 结构
 CREATE TABLE IF NOT EXISTS `fa_category` (
@@ -4306,7 +4355,7 @@ INSERT INTO `fa_config` (`id`, `name`, `group`, `title`, `tip`, `type`, `visible
 	(1, 'name', 'basic', 'Site name', '请填写站点名称', 'string', '', '发型公社', '', 'required', '', ''),
 	(2, 'beian', 'basic', 'Beian', '粤ICP备15000000号-1', 'string', '', '', '', '', '', ''),
 	(3, 'cdnurl', 'basic', 'Cdn url', '如果全站静态资源使用第三方云储存请配置该值', 'string', '', '', '', '', '', ''),
-	(4, 'version', 'basic', 'Version', '如果静态资源有变动请重新配置该值', 'string', '', '1.0.3', '', 'required', '', ''),
+	(4, 'version', 'basic', 'Version', '如果静态资源有变动请重新配置该值', 'string', '', '1.0.5', '', 'required', '', ''),
 	(5, 'timezone', 'basic', 'Timezone', '', 'string', '', 'Asia/Shanghai', '', 'required', '', ''),
 	(6, 'forbiddenip', 'basic', 'Forbidden ip', '一行一条记录', 'text', '', '', '', '', '', ''),
 	(7, 'languages', 'basic', 'Languages', '', 'array', '', '{"backend":"zh-cn","frontend":"zh-cn"}', '', 'required', '', ''),
@@ -4378,6 +4427,58 @@ CREATE TABLE IF NOT EXISTS `fa_ems` (
 
 -- 正在导出表  hair.fa_ems 的数据：~0 rows (大约)
 DELETE FROM `fa_ems`;
+
+-- 导出  表 hair.fa_hair_log 结构
+CREATE TABLE IF NOT EXISTS `fa_hair_log` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `shoper_id` int(10) DEFAULT '0' COMMENT '商家ID',
+  `user_id` int(10) DEFAULT '0' COMMENT '客户ID',
+  `random_code` varchar(100) DEFAULT '' COMMENT '随机码',
+  `createtime` bigint(16) DEFAULT NULL COMMENT '创建时间',
+  `updatetime` bigint(16) DEFAULT NULL COMMENT '更新时间',
+  `deletetime` bigint(16) DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='记录表';
+
+-- 正在导出表  hair.fa_hair_log 的数据：~0 rows (大约)
+DELETE FROM `fa_hair_log`;
+INSERT INTO `fa_hair_log` (`id`, `shoper_id`, `user_id`, `random_code`, `createtime`, `updatetime`, `deletetime`) VALUES
+	(2, 2, 2, '23456', 1729160576, 1729160576, NULL);
+
+-- 导出  表 hair.fa_hair_shoper 结构
+CREATE TABLE IF NOT EXISTS `fa_hair_shoper` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(100) DEFAULT '' COMMENT '昵称',
+  `account` varchar(100) DEFAULT '' COMMENT '账号',
+  `password` varchar(100) DEFAULT '' COMMENT '密码',
+  `safe_code` varchar(100) DEFAULT '' COMMENT '权限码',
+  `createtime` bigint(16) DEFAULT NULL COMMENT '创建时间',
+  `updatetime` bigint(16) DEFAULT NULL COMMENT '更新时间',
+  `deletetime` bigint(16) DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='商家表';
+
+-- 正在导出表  hair.fa_hair_shoper 的数据：~1 rows (大约)
+DELETE FROM `fa_hair_shoper`;
+INSERT INTO `fa_hair_shoper` (`id`, `name`, `account`, `password`, `safe_code`, `createtime`, `updatetime`, `deletetime`) VALUES
+	(2, '蓝马', 'lanma', '123456', '157359', 1729160056, 1729160056, NULL);
+
+-- 导出  表 hair.fa_hair_user 结构
+CREATE TABLE IF NOT EXISTS `fa_hair_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(100) DEFAULT '' COMMENT '昵称',
+  `account` varchar(100) DEFAULT '' COMMENT '账号',
+  `balance` int(10) unsigned DEFAULT '0' COMMENT '剩余次数',
+  `createtime` bigint(16) DEFAULT NULL COMMENT '创建时间',
+  `updatetime` bigint(16) DEFAULT NULL COMMENT '更新时间',
+  `deletetime` bigint(16) DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='客户表';
+
+-- 正在导出表  hair.fa_hair_user 的数据：~1 rows (大约)
+DELETE FROM `fa_hair_user`;
+INSERT INTO `fa_hair_user` (`id`, `name`, `account`, `balance`, `createtime`, `updatetime`, `deletetime`) VALUES
+	(2, '列飞', 'liefei', 20, 1729160021, 1729160021, NULL);
 
 -- 导出  表 hair.fa_invite 结构
 CREATE TABLE IF NOT EXISTS `fa_invite` (
