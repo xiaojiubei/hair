@@ -33,7 +33,7 @@ class Codes extends Command
             ];
         }
         Db::name('hair_code')->insertAll($codes);
-        $output->writeln("Success");
+        $output->writeln("Success Codes");
     }
 
 }

@@ -19,4 +19,5 @@ return [
     'app\admin\command\Api',
     'app\admin\command\Command',
     'app\admin\command\Codes',
+    'app\admin\command\Users',
 ];
