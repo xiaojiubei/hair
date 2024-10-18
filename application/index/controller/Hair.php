@@ -31,14 +31,19 @@ class Hair extends Controller
                         if ($user) {
                             $safeCode = Db::name('hair_code')->where('md5(random_code)', $params['r'])->find();
                             if ($safeCode) {
-                                Db::transaction(function () use ($user, $shoper, $safeCode) {
-                                    Db::name('hair_user')->where('id', $user['id'])->setDec('balance');
-                                    Db::name('hair_log')->insert([
-                                        'shoper_id'   => $shoper['id'],
-                                        'user_id'     => $user['id'],
-                                        'random_code' => $safeCode['random_code'],
-                                    ]);
-                                });
+                                $log = Db::name('hair_log')->where('md5(random_code)', $params['r'])
+                                    ->where('user_id', $user['id'])
+                                    ->find();
+                                if (!$log) {
+                                    Db::transaction(function () use ($user, $shoper, $safeCode) {
+                                        Db::name('hair_user')->where('id', $user['id'])->setDec('balance');
+                                        Db::name('hair_log')->insert([
+                                            'shoper_id'   => $shoper['id'],
+                                            'user_id'     => $user['id'],
+                                            'random_code' => $safeCode['random_code'],
+                                        ]);
+                                    });
+                                }
                             }
                         }
                         return json([
