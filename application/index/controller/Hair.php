@@ -22,7 +22,35 @@ class Hair extends Controller
         $params = $this->request->param();
         if (!empty($params['a']) && !empty($params['r'])) {
             if ($this->request->isPost()) {
-                $this->success('刷卡成功');
+                // $this->success('刷卡成功');
+                // halt($params);
+                if (!empty($params['s'])) {
+                    $shoper = Db::name('hair_shoper')->where('safe_code', $params['s'])->find();
+                    if ($shoper) {
+                        $user = Db::name('hair_user')->where('md5(account)', $params['a'])->find();
+                        if ($user) {
+                            $safeCode = Db::name('hair_code')->where('md5(random_code)', $params['r'])->find();
+                            if ($safeCode) {
+                                Db::transaction(function () use ($user, $shoper, $safeCode) {
+                                    Db::name('hair_user')->where('id', $user['id'])->setDec('balance');
+                                    Db::name('hair_log')->insert([
+                                        'shoper_id'   => $shoper['id'],
+                                        'user_id'     => $user['id'],
+                                        'random_code' => $safeCode['random_code'],
+                                    ]);
+                                });
+                            }
+                        }
+                        return json([
+                            'code' => 1,
+                            'msg'  => '刷卡成功',
+                        ]);
+                    }
+                }
+                return json([
+                    'code' => 0,
+                    'msg'  => 'failed',
+                ]);
             }
             return $this->fetch();
         }
