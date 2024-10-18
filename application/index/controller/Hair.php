@@ -16,6 +16,32 @@ use Endroid\QrCode\Writer\PngWriter;
 
 class Hair extends Controller
 {
+    // 商家端
+    public function shoper()
+    {
+        //
+        $safeCode = $this->request->param('c');
+        $shoper = Db::name('hair_shoper')->where('md5(safe_code)', $safeCode)
+            // ->fetchSql(true)
+            ->find();
+        $shoper = Db::query('select * from fa_hair_shoper where md5(safe_code) = "' . $safeCode . '" limit 1');
+        if ($shoper) {
+            $shoper = $shoper[0];
+        }
+        // halt($shoper);
+        if ($shoper) {
+            $log = Db::name('hair_log')->alias('l')
+                ->join('__HAIR_USER__ u', 'l.user_id = u.id', 'LEFT')
+                ->field('l.*,u.name')
+                ->where('l.shoper_id', $shoper['id'])
+                ->select();
+        }
+        return $this->fetch('shoper', [
+            'shoper' => $shoper,
+            'log'    => $log ?? [],
+        ]);
+    }
+
     // 付款码
     public function paycode()
     {
@@ -84,7 +110,10 @@ class Hair extends Controller
     {
         //
         $account = $this->request->param('a');
-        $user = Db::name('hair_user')->where('md5(account)', $account)->find();
+        $user = Db::name('hair_user')->where('md5(account)', $account)
+            // ->fetchSql(true)
+            ->find();
+        // halt($user);
         if ($user) {
             $log = Db::name('hair_log')->alias('l')
                 ->join('__HAIR_SHOPER__ s', 'l.shoper_id = s.id', 'LEFT')
