@@ -43,6 +43,7 @@ class Hair extends Controller
                                             'random_code' => $safeCode['random_code'],
                                         ]);
                                     });
+                                    $msg = '刷卡成功';
                                 }
                                 $msg = '请刷新付款码重试';
                             }
@@ -51,7 +52,7 @@ class Hair extends Controller
                         $msg = '无此会员';
                         return json([
                             'code' => 1,
-                            'msg'  => '刷卡成功',
+                            'msg'  => $msg ?? 'failed',
                         ]);
                     }
                     $msg = '无此商家';
