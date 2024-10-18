@@ -17,7 +17,7 @@ class Hair extends Controller
     {
         //
         $account = $this->request->param('a');
-        $user = Db::name('hair_user')->where('account', $account)->find();
+        $user = Db::name('hair_user')->where('md5(account)', $account)->find();
         // halt($user);
         if ($user) {
             $log = Db::name('hair_log')->alias('l')
