@@ -44,17 +44,21 @@ class Hair extends Controller
                                         ]);
                                     });
                                 }
+                                $msg = '请刷新付款码重试';
                             }
+                            $msg = '非法付款码';
                         }
+                        $msg = '无此会员';
                         return json([
                             'code' => 1,
                             'msg'  => '刷卡成功',
                         ]);
                     }
+                    $msg = '无此商家';
                 }
                 return json([
                     'code' => 0,
-                    'msg'  => 'failed',
+                    'msg'  => $msg ?? 'failed',
                 ]);
             }
             return $this->fetch();
