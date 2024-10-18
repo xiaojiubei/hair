@@ -6,9 +6,17 @@ use think\Controller;
 use think\Db;
 use think\Request;
 use think\Url;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\Label\Alignment\LabelAlignmentCenter;
+use Endroid\QrCode\Label\Font\NotoSans;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
 
 class Hair extends Controller
 {
+    // 付款码
     public function paycode()
     {
         $account = $this->request->param('a');
@@ -26,13 +34,46 @@ class Hair extends Controller
                 'a' => $account,
                 'r' => $randomCodeSafe,
             ], 'html', true);
-            halt($url);
+
+            $result = Builder::create()
+                ->writer(new PngWriter())
+                ->writerOptions([])
+                ->data($url)
+                ->encoding(new Encoding('UTF-8'))
+                ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
+                ->size(300)
+                ->margin(10)
+                ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+                // ->logoPath(__DIR__.'/assets/symfony.png')
+                // ->labelText('This is the label')
+                // ->labelFont(new NotoSans(20))
+                // ->labelAlignment(new LabelAlignmentCenter())
+                ->validateResult(false)
+                ->build();
+
+            // Directly output the QR code
+            // header('Content-Type: ' . $result->getMimeType());
+            // echo $result->getString();
+
+            // Save it to a file
+            // $result->saveToFile(__DIR__ . '/qrcode.png');
+
+            // Generate a data URI to include image data inline (i.e. inside an <img> tag)
+            $dataUri = $result->getDataUri();
+            // halt($dataUri);
+
+            return $this->fetch('paycode', [
+                'user' => $user,
+                'src'  => $dataUri,
+            ]);
         }
         return json([
             'code' => 0,
             'msg'  => 'failed',
         ]);
     }
+
+    // 划卡
 
     /**
      * 显示资源列表

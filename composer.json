@@ -29,7 +29,8 @@
         "ext-curl": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
-        "txthinking/mailer": "^2.0"
+        "txthinking/mailer": "^2.0",
+        "endroid/qr-code": "^4.6"
     },
     "config": {
         "preferred-install": "dist",
