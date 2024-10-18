@@ -16,6 +16,22 @@ use Endroid\QrCode\Writer\PngWriter;
 
 class Hair extends Controller
 {
+    // 划卡
+    public function dopay()
+    {
+        $params = $this->request->param();
+        if (!empty($params['a']) && !empty($params['r'])) {
+            if ($this->request->isPost()) {
+                $this->success('刷卡成功');
+            }
+            return $this->fetch();
+        }
+        return json([
+            'code' => 0,
+            'msg'  => 'failed',
+        ]);
+    }
+
     // 商家端
     public function shoper()
     {
@@ -56,10 +72,11 @@ class Hair extends Controller
                 })
                 ->value('random_code');
             $randomCodeSafe = md5($randomCode);
-            $url = Url::build('paycode', [
+            $url = Url::build('dopay', [
                 'a' => $account,
                 'r' => $randomCodeSafe,
             ], 'html', true);
+            // halt($url);
 
             $result = Builder::create()
                 ->writer(new PngWriter())

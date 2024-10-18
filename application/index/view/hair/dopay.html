@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>刷卡</title>
+    <link href="__PUBLIC__assets/hair/layui-main/layui-main/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<script src="__PUBLIC__assets/hair/layui-main/layui-main/dist/layui.js"></script>
+<script>
+    layui.use(function () {
+        var layer = layui.layer;
+        layer.prompt({title: '请输入权限码', formType: 1}, function(value, index, elem){
+            if(value === '') return elem.focus();
+            layer.msg('获得：'+ util.escape(value)); // 显示 value
+            // 关闭 prompt
+            layer.close(index);
+        });
+    });
+</script>
+</body>
+</html>
