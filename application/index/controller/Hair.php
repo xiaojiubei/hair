@@ -49,6 +49,7 @@ class Hair extends Controller
                                                 'shoper_id'   => $shoper['id'],
                                                 'user_id'     => $user['id'],
                                                 'random_code' => $safeCode['random_code'],
+                                                'createtime'  => time(),
                                             ]);
                                         });
                                         $msg = '刷卡成功';
