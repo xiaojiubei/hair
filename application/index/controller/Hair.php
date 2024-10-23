@@ -25,14 +25,23 @@ class Hair extends Controller
                 if (!empty($params['s'])) {
                     $shoper = Db::name('hair_shoper')->where('safe_code', $params['s'])->find();
                     if ($shoper) {
-                        $user = Db::name('hair_user')->where('md5(account)', $params['a'])->find();
+                        $user = Db::name('hair_user')->whereRaw("md5(account) = '$params[a]'")
+                            // ->fetchSql(true)
+                            ->find();
+                        // halt($user);
                         if ($user) {
                             if ($user['state'] == 1) {
-                                $safeCode = Db::name('hair_code')->where('md5(random_code)', $params['r'])->find();
+                                $safeCode = Db::name('hair_code')
+                                    // ->fetchSql(true)
+                                    ->whereRaw('md5(random_code) = "' . $params['r'] . '"')
+                                    ->find();
+                                // halt($safeCode);
                                 if ($safeCode) {
-                                    $log = Db::name('hair_log')->where('md5(random_code)', $params['r'])
+                                    $log = Db::name('hair_log')->whereRaw('md5(random_code) = "' . $params['r'] . '"')
                                         ->where('user_id', $user['id'])
+                                        // ->fetchSql(true)
                                         ->find();
+                                    // halt($log);
                                     if (!$log) {
                                         Db::transaction(function () use ($user, $shoper, $safeCode) {
                                             Db::name('hair_user')->where('id', $user['id'])->setDec('balance');
@@ -96,13 +105,13 @@ class Hair extends Controller
     {
         //
         $safeCode = $this->request->param('c');
-        $shoper = Db::name('hair_shoper')->where('md5(safe_code)', $safeCode)
+        $shoper = Db::name('hair_shoper')->whereRaw('md5(safe_code) = "' . $safeCode . '"')
             // ->fetchSql(true)
             ->find();
-        $shoper = Db::query('select * from fa_hair_shoper where md5(safe_code) = "' . $safeCode . '" limit 1');
-        if ($shoper) {
-            $shoper = $shoper[0];
-        }
+        // $shoper = Db::query('select * from fa_hair_shoper where md5(safe_code) = "' . $safeCode . '" limit 1');
+        // if ($shoper) {
+        //     $shoper = $shoper[0];
+        // }
         // halt($shoper);
         if ($shoper) {
             $log = Db::name('hair_log')->alias('l')
@@ -121,7 +130,7 @@ class Hair extends Controller
     public function paycode()
     {
         $account = $this->request->param('a');
-        $user = Db::name('hair_user')->where('md5(account)', $account)->find();
+        $user = Db::name('hair_user')->whereRaw('md5(account) = "' . $account . '"')->find();
         if ($user) {
             $randomCode = Db::name('hair_code')->alias('c')
                 ->whereNotExists(function ($query) use ($user) {
@@ -175,8 +184,6 @@ class Hair extends Controller
         ]);
     }
 
-    // 划卡
-
     /**
      * 显示资源列表
      *
@@ -186,7 +193,7 @@ class Hair extends Controller
     {
         //
         $account = $this->request->param('a');
-        $user = Db::name('hair_user')->where('md5(account)', $account)
+        $user = Db::name('hair_user')->where('md5(account) = "' . $account . '"')
             // ->fetchSql(true)
             ->find();
         // halt($user);
