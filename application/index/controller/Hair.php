@@ -22,32 +22,49 @@ class Hair extends Controller
         $params = $this->request->param();
         if (!empty($params['a']) && !empty($params['r'])) {
             if ($this->request->isPost()) {
-                // $this->success('刷卡成功');
-                // halt($params);
                 if (!empty($params['s'])) {
                     $shoper = Db::name('hair_shoper')->where('safe_code', $params['s'])->find();
                     if ($shoper) {
                         $user = Db::name('hair_user')->where('md5(account)', $params['a'])->find();
                         if ($user) {
-                            $safeCode = Db::name('hair_code')->where('md5(random_code)', $params['r'])->find();
-                            if ($safeCode) {
-                                $log = Db::name('hair_log')->where('md5(random_code)', $params['r'])
-                                    ->where('user_id', $user['id'])
-                                    ->find();
-                                if (!$log) {
-                                    Db::transaction(function () use ($user, $shoper, $safeCode) {
-                                        Db::name('hair_user')->where('id', $user['id'])->setDec('balance');
-                                        Db::name('hair_log')->insert([
-                                            'shoper_id'   => $shoper['id'],
-                                            'user_id'     => $user['id'],
-                                            'random_code' => $safeCode['random_code'],
+                            if ($user['state'] == 1) {
+                                $safeCode = Db::name('hair_code')->where('md5(random_code)', $params['r'])->find();
+                                if ($safeCode) {
+                                    $log = Db::name('hair_log')->where('md5(random_code)', $params['r'])
+                                        ->where('user_id', $user['id'])
+                                        ->find();
+                                    if (!$log) {
+                                        Db::transaction(function () use ($user, $shoper, $safeCode) {
+                                            Db::name('hair_user')->where('id', $user['id'])->setDec('balance');
+                                            Db::name('hair_log')->insert([
+                                                'shoper_id'   => $shoper['id'],
+                                                'user_id'     => $user['id'],
+                                                'random_code' => $safeCode['random_code'],
+                                            ]);
+                                        });
+                                        $msg = '刷卡成功';
+                                        return json([
+                                            'code' => 0,
+                                            'msg'  => $msg ?? 'failed',
                                         ]);
-                                    });
-                                    $msg = '刷卡成功';
+                                    }
+                                    $msg = '该付款码已过期，请刷新后重试';
+                                    return json([
+                                        'code' => 0,
+                                        'msg'  => $msg ?? 'failed',
+                                    ]);
                                 }
-                                $msg = '请刷新付款码重试';
+                                $msg = '非法付款码';
+                                return json([
+                                    'code' => 0,
+                                    'msg'  => $msg ?? 'failed',
+                                ]);
                             }
-                            $msg = '非法付款码';
+                            $msg = '该卡还未售出';
+                            return json([
+                                'code' => 0,
+                                'msg'  => $msg ?? 'failed',
+                            ]);
                         }
                         $msg = '无此会员';
                         return json([
@@ -56,6 +73,10 @@ class Hair extends Controller
                         ]);
                     }
                     $msg = '无此商家';
+                    return json([
+                        'code' => 0,
+                        'msg'  => $msg ?? 'failed',
+                    ]);
                 }
                 return json([
                     'code' => 0,
