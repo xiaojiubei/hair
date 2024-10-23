@@ -44,7 +44,7 @@ class Hair extends Controller
                                         });
                                         $msg = '刷卡成功';
                                         return json([
-                                            'code' => 0,
+                                            'code' => 1,
                                             'msg'  => $msg ?? 'failed',
                                         ]);
                                     }
@@ -68,7 +68,7 @@ class Hair extends Controller
                         }
                         $msg = '无此会员';
                         return json([
-                            'code' => 1,
+                            'code' => 0,
                             'msg'  => $msg ?? 'failed',
                         ]);
                     }
