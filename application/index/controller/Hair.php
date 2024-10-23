@@ -55,6 +55,11 @@ class Hair extends Controller
                                         return json([
                                             'code' => 1,
                                             'msg'  => $msg ?? 'failed',
+                                            'data' => [
+                                                'url' => url('shoper', [
+                                                    'c' => md5($shoper['safe_code']),
+                                                ], 'html', true),
+                                            ],
                                         ]);
                                     }
                                     $msg = '该付款码已过期，请刷新后重试';
