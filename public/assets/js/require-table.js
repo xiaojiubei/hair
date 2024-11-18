@@ -805,7 +805,7 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                         display = __(value.charAt(0).toUpperCase() + value.slice(1));
                     }
                     var html = '<span class="text-' + color + '">' + (icon ? '<i class="' + icon + '"></i> ' : '') + display + '</span>';
-                    if (this.operate != false) {
+                    if (typeof this.operate !== 'undefined' && this.operate != false) {
                         html = '<a href="javascript:;" class="searchit" data-toggle="tooltip" title="' + __('Click to search %s', display) + '" data-field="' + this.field + '" data-value="' + value + '">' + html + '</a>';
                     }
                     return html;
