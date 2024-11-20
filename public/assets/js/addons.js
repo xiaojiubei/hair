@@ -45,7 +45,7 @@ require(['fast', 'layer'], function (Fast, Layer) {
         options.shade = Config.betterform.shade;
         return _fastOpen(url, title, options);
     };
-    if (isNaN(Config.betterform.dialoganim)) {
+    if (isNaN(Config.betterform.anim)) {
         var _layerOpen = Layer.open;
         Layer.open = function (options) {
             var classNameArr = {slideDown: "layer-anim-slide-down", slideLeft: "layer-anim-slide-left", slideUp: "layer-anim-slide-up", slideRight: "layer-anim-slide-right"};
@@ -141,6 +141,7 @@ require(['form'], function (Form) {
         _bindevent.apply(this, [form]);
         var captchaObj = $("input[name=captcha]", form);
         if (captchaObj.length > 0) {
+            captchaObj.closest("form").find("button[type=submit]").removeAttr("disabled");
             clicaptcha(captchaObj);
             if ($(form).attr("name") === 'captcha-form') {
                 setTimeout(function () {
