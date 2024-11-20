@@ -559,7 +559,9 @@ define(['jquery', 'bootstrap', 'upload', 'validator', 'validator-lang'], functio
                         }
                     };
                     // @formatter:on
+                    var $disabledElements = form.find(':disabled').removeAttr('disabled');
                     var dataArr = form.serializeArray(), dataObj = {}, fieldName, fieldValue;
+                    $disabledElements.attr('disabled', 'disabled');
                     $(dataArr).each(function (i, field) {
                         fieldName = field.name;
                         fieldValue = field.value;
